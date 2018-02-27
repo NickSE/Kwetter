@@ -23,4 +23,44 @@ public class Kweet {
         this.mentions = mentions;
         this.trends = trends;
     }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public String getKweet() {
+        return kweet;
+    }
+
+    public void setKweet(String kweet) {
+        this.kweet = kweet;
+    }
+
+    public Date getPostDate() {
+        return postDate;
+    }
+
+    public List<Profile> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Profile> likes) {
+        this.likes = likes;
+    }
+
+    public List<String> getMentions() {
+        return mentions;
+    }
+
+    public void setMentions(List<String> mentions) {
+        this.mentions = mentions;
+    }
+
+    public List<String> getTrends() {
+        return trends;
+    }
+
+    public void setTrends(List<String> trends) {
+        this.trends = trends;
+    }
 }
