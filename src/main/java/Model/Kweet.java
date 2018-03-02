@@ -1,8 +1,11 @@
+package Model;
+
 import java.util.Date;
 import java.util.List;
 
 public class Kweet {
 
+    private long kweetId;
     private String ownerId;
     private String kweet;
     private Date postDate;
@@ -10,7 +13,8 @@ public class Kweet {
     private List<String> mentions;
     private List<String> trends;
 
-    public Kweet(String ownerId, String kweet, Date postDate) {
+    public Kweet(long kweetId, String ownerId, String kweet, Date postDate) {
+        this.kweetId = kweetId;
         this.ownerId = ownerId;
         this.kweet = kweet;
         this.postDate = postDate;
@@ -22,6 +26,18 @@ public class Kweet {
         this.postDate = postDate;
         this.mentions = mentions;
         this.trends = trends;
+    }
+
+    public long getKweetId() {
+        return kweetId;
+    }
+
+    public void setKweetId(long kweetId) {
+        this.kweetId = kweetId;
+    }
+
+    public void setPostDate(Date postDate) {
+        this.postDate = postDate;
     }
 
     public String getOwnerId() {

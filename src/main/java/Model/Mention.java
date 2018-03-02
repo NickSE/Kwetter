@@ -1,3 +1,5 @@
+package Model;
+
 public class Mention {
 
     private Profile profile;
@@ -14,5 +16,10 @@ public class Mention {
 
     public Kweet getContainingKweet() {
         return containingKweet;
+    }
+
+    //Make empty mention list, search for mentions, add mentions to empty list if there are any.
+    public void setContainingKweet(Kweet containingKweet) {
+        this.containingKweet = containingKweet;
     }
 }

@@ -1,7 +1,10 @@
+package Model;
+
 import java.util.List;
 
 public class Profile {
 
+    private long profileId;
     private String username;
     private String bio;
     private String location;
@@ -11,7 +14,14 @@ public class Profile {
     private String profilePicUrl;
     private Role role;
 
-    public Profile(String username, String bio, String location, String web, String profilePicUrl, Role role) {
+    public Profile(long profileId, String username, Role role) {
+        this.profileId = profileId;
+        this.username = username;
+        this.role = role;
+    }
+
+    public Profile(long profileId, String username, String bio, String location, String web, String profilePicUrl, Role role) {
+        this.profileId = profileId;
         this.username = username;
         this.bio = bio;
         this.location = location;
@@ -20,8 +30,36 @@ public class Profile {
         this.role = role;
     }
 
+    public long getProfileId() {
+        return profileId;
+    }
+
+    public void setProfileId(long profileId) {
+        this.profileId = profileId;
+    }
+
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setWeb(String web) {
+        this.web = web;
+    }
+
+    public void setProfilePicUrl(String profilePicUrl) {
+        this.profilePicUrl = profilePicUrl;
     }
 
     public String getBio() {

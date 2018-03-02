@@ -1,3 +1,5 @@
+package Model;
+
 public class Trend {
 
     private String trend;
@@ -14,5 +16,10 @@ public class Trend {
 
     public Kweet getContainingKweet() {
         return containingKweet;
+    }
+
+    //Make empty trend list, search for trends, add trends to empty list if there are any.
+    public void setContainingKweet(Kweet containingKweet) {
+        this.containingKweet = containingKweet;
     }
 }
