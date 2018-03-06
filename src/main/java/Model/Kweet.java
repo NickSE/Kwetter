@@ -40,6 +40,7 @@ public class Kweet {
         this.postDate = postDate;
     }
 
+
     public String getOwnerId() {
         return ownerId;
     }

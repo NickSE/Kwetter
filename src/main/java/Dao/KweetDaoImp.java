@@ -2,7 +2,9 @@ package Dao;
 
 import Model.Kweet;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -12,7 +14,7 @@ public class KweetDaoImp implements KweetDao{
     private AtomicLong nextId = new AtomicLong(0L);
     private ConcurrentHashMap<Long, Kweet> kweets;
 
-    public static synchronized KweetDao getPostingDao() {
+    public static synchronized KweetDao getKweetDao() {
         if (instance == null) {
             instance = new KweetDaoImp();
         }
@@ -25,8 +27,6 @@ public class KweetDaoImp implements KweetDao{
 
     public void initWebBlog() {
         kweets = new ConcurrentHashMap<>();
-
-        create(new Kweet(nextId.getAndIncrement(), "Nick", "Test", new Date()));
     }
 
 
@@ -36,7 +36,6 @@ public class KweetDaoImp implements KweetDao{
             throw new IllegalArgumentException("Kweet is null");
         }
 
-        kweet.setKweetId(nextId.getAndIncrement());
         kweets.put(kweet.getKweetId(), kweet);
         return kweet;
     }
@@ -64,5 +63,18 @@ public class KweetDaoImp implements KweetDao{
         }
 
         kweets.remove(kweetId);
+    }
+
+    @Override
+    public List<Kweet> findAll() {
+        return new ArrayList(kweets.values());
+    }
+
+    @Override
+    public Kweet find(Long id) {
+        if (!kweets.containsKey(id)) {
+            throw new IllegalArgumentException("Id not found: " + id);
+        }
+        return kweets.get(id);
     }
 }

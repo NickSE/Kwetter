@@ -12,7 +12,7 @@ public class ProfileDaoImp implements ProfileDao{
     private AtomicLong nextId = new AtomicLong(0L);
     private ConcurrentHashMap<Long, Profile> profiles;
 
-    public static synchronized ProfileDao getPostingDao() {
+    public static synchronized ProfileDao getProfileDao() {
         if (instance == null) {
             instance = new ProfileDaoImp();
         }
@@ -33,7 +33,7 @@ public class ProfileDaoImp implements ProfileDao{
         if (profile == null) {
             throw new IllegalArgumentException("Profile is null");
         }
-        profile.setProfileId(nextId.getAndIncrement());
+
         profiles.put(profile.getProfileId(), profile);
         return profile;
     }
