@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface KweetDao {
 
-    Kweet create(Kweet kweet);
+    void create(Kweet kweet);
 
-    Kweet update(long kweetId, String ownerId, String kweet, Date postDate);
+    void update(Kweet kweet);
 
-    void delete(long kweetId);
+    void delete(Kweet kweet);
 
     List<Kweet> findAll();
 
-    Kweet find(Long id);
+    //Kweet find(Long id);
 }

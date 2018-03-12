@@ -6,9 +6,14 @@ import Dao.ProfileDao;
 import Dao.ProfileDaoImp;
 import Model.Kweet;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import java.util.Date;
 import java.util.List;
 
+@Path("kweets")
 public class KwetterService {
 
     private final KweetDao kweetDao;
@@ -17,24 +22,26 @@ public class KwetterService {
         kweetDao = KweetDaoImp.getKweetDao();
     }
 
-    public Kweet addKweet(Kweet k) {
-        return kweetDao.create(k);
+    public void addKweet(Kweet k) {
+        kweetDao.create(k);
     }
 
-    public Kweet editKweet(long kweetId, String ownerId, String kweet, Date postDate) {
-        return kweetDao.update(kweetId, ownerId, kweet, postDate);
+    public void editKweet(Kweet kweet) {
+        kweetDao.update(kweet);
     }
 
-    public void removeKweet (long kweetId) {
-        kweetDao.delete(kweetId);
+    public void removeKweet (Kweet kweet) {
+        kweetDao.delete(kweet);
     }
 
+    @GET
+    @Path("getall")
     public List<Kweet> getKweets() {
         return kweetDao.findAll();
     }
 
-    public Kweet getKweet(Long id) {
-        return kweetDao.find(id);
-    }
+//    public Kweet getKweet(Long id) {
+//        return kweetDao.find(id);
+//    }
 
 }
