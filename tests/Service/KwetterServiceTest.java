@@ -16,23 +16,23 @@ public class KwetterServiceTest {
     Kweet kweet2 = new Kweet(1234567890, "NickJr", "Test123", new Date());
     KwetterService kwetterService = new KwetterService();
 
-    @Test
-    public void addKweet() {
-        assertEquals(kwetterService.addKweet(kweet), kweet);
-    }
-
-    @Test
-    public void editKweet(){
-        kwetterService.addKweet(kweet);
-        assertNotEquals(kwetterService.editKweet(123456789,"Nick", "Test123", new Date()), kweet.getKweet());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void deleteKweet(){
-        long id = 123456789;
-        kwetterService.removeKweet(id);
-        kwetterService.getKweet(id);
-    }
+//    @Test
+//    public void addKweet() {
+//        assertEquals(kwetterService.addKweet(kweet), kweet);
+//    }
+//
+//    @Test
+//    public void editKweet(){
+//        kwetterService.addKweet(kweet);
+//        assertNotEquals(kwetterService.editKweet(123456789,"Nick", "Test123", new Date()), kweet.getKweet());
+//    }
+//
+//    @Test(expected = IllegalArgumentException.class)
+//    public void deleteKweet(){
+//        long id = 123456789;
+//        kwetterService.removeKweet(id);
+//        kwetterService.getKweet(id);
+//    }
 
     @Test
     public void getKweets(){

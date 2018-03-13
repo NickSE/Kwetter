@@ -1,16 +1,24 @@
 package Model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Kweet {
+@Entity
+@NamedQuery(name="Kweet.findAll", query="Select k FROM Kweet k")
+public class Kweet implements Serializable {
 
+    @Id @GeneratedValue
     private long kweetId;
     private String ownerId;
     private String kweet;
     private Date postDate;
+    @Transient
     private List<Profile> likes;
+    @ElementCollection
     private List<String> mentions;
+    @ElementCollection
     private List<String> trends;
 
     public Kweet(long kweetId, String ownerId, String kweet, Date postDate) {
@@ -26,6 +34,9 @@ public class Kweet {
         this.postDate = postDate;
         this.mentions = mentions;
         this.trends = trends;
+    }
+
+    public Kweet() {
     }
 
     public long getKweetId() {
