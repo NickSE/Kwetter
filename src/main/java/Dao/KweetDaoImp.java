@@ -3,7 +3,6 @@ package Dao;
 import Model.Kweet;
 
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,8 +19,8 @@ public class KweetDaoImp implements KweetDao{
     private EntityManager em;
 
     private static KweetDaoImp instance = null;
-    //private AtomicLong nextId = new AtomicLong(0L);
-    //private ConcurrentHashMap<Long, Kweet> kweets;
+    private AtomicLong nextId = new AtomicLong(0L);
+    private ConcurrentHashMap<Long, Kweet> kweets;
 
     public static synchronized KweetDao getKweetDao() {
         if (instance == null) {
@@ -35,53 +34,55 @@ public class KweetDaoImp implements KweetDao{
     }
 
     public void initWebBlog() {
-        //kweets = new ConcurrentHashMap<>();
+        kweets = new ConcurrentHashMap<>();
+        kweets.put(nextId.getAndIncrement(), new Kweet(nextId.getAndIncrement(),"Nick","Test", new Date()));
     }
 
 
     @Override
-    public void create(Kweet kweet) {
-//        if (kweet == null) {
-//            throw new IllegalArgumentException("Kweet is null");
-//        }
-//
-//        kweets.put(kweet.getKweetId(), kweet);
-//        return kweet;
-        em.persist(kweet);
+    public Kweet create(Kweet kweet) {
+        if (kweet == null) {
+            throw new IllegalArgumentException("Kweet is null");
+        }
+
+        kweets.put(kweet.getKweetId(), kweet);
+        return kweet;
+//        em.persist(kweet);
     }
 
     @Override
-    public void update(Kweet kweet) {
-//        if (ownerId == null || kweet == null) {
-//            throw new IllegalArgumentException("Owner or kweet is null");
-//        }
-//        if (!kweets.containsKey(kweetId)) {
-//            throw new IllegalArgumentException("KweetId not found: " + kweetId);
-//        }
-//
-//        Kweet k = kweets.get(kweetId);
-//        k.setKweet(kweet);
-//        k.setPostDate(postDate);
-//
-//        return k;
-        em.merge(kweet);
+    public Kweet update(Kweet kweet) {
+        if (kweet.getOwnerId() == null || kweet == null) {
+            throw new IllegalArgumentException("Owner or kweet is null");
+        }
+        if (!kweets.containsKey(kweet.getKweetId())) {
+            throw new IllegalArgumentException("KweetId not found: " + kweet.getKweetId());
+        }
+
+        Kweet k = kweets.get(kweet.getKweetId());
+        k.setKweet(kweet.getKweet());
+        k.setPostDate(kweet.getPostDate());
+        kweets.put(kweet.getKweetId(), k);
+        return k;
+//        em.merge(kweet);
     }
 
     @Override
-    public void delete(Kweet kweet) {
-//        if (!kweets.containsKey(kweetId)) {
-//            throw new IllegalArgumentException("Id not found: " + kweetId);
-//        }
-//
-//        kweets.remove(kweetId);
-        em.remove(em.merge(kweet));
+    public boolean delete(Long kweetId) {
+        if (!kweets.containsKey(kweetId)) {
+            throw new IllegalArgumentException("Id not found: " + kweetId);
+        }
+
+        kweets.remove(kweetId);
+        return true;
+//        em.remove(em.merge(kweet));
     }
 
     @Override
     public List<Kweet> findAll() {
-//        return new ArrayList(kweets.values());
-        Query query = em.createQuery("SELECT k FROM Kweet k");
-        return new ArrayList<>(query.getResultList());
+        return new ArrayList(kweets.values());
+//        Query query = em.createQuery("SELECT k FROM Kweet k");
+//        return new ArrayList<>(query.getResultList());
     }
 
 //    @Override

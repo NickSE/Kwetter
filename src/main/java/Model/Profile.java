@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Profile {
 
-    private long profileId;
+    private Long profileId;
     private String username;
     private String bio;
     private String location;
@@ -14,13 +14,13 @@ public class Profile {
     private String profilePicUrl;
     private Role role;
 
-    public Profile(long profileId, String username, Role role) {
+    public Profile(Long profileId, String username, Role role) {
         this.profileId = profileId;
         this.username = username;
         this.role = role;
     }
 
-    public Profile(long profileId, String username, String bio, String location, String web, String profilePicUrl, Role role) {
+    public Profile(Long profileId, String username, String bio, String location, String web, String profilePicUrl, Role role) {
         this.profileId = profileId;
         this.username = username;
         this.bio = bio;

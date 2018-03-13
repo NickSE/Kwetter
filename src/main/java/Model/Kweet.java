@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name="Kweet")
 @NamedQuery(name="Kweet.findAll", query="Select k FROM Kweet k")
 public class Kweet implements Serializable {
 

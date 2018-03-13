@@ -3,6 +3,8 @@ package Dao;
 import Model.Profile;
 import Model.Role;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -59,11 +61,17 @@ public class ProfileDaoImp implements ProfileDao{
     }
 
     @Override
-    public void delete(long profileId) {
+    public boolean delete(long profileId) {
         if (!profiles.containsKey(profileId)) {
             throw new IllegalArgumentException("Id not found: " + profileId);
         }
 
         profiles.remove(profileId);
+        return true;
+    }
+
+    @Override
+    public List<Profile> findAll() {
+        return new ArrayList<>(profiles.values());
     }
 }
