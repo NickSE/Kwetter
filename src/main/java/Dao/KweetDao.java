@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface KweetDao {
 
-    void create(Kweet kweet);
+    Kweet create(Kweet kweet);
 
     void update(Kweet kweet);
 
