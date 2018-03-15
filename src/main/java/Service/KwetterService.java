@@ -6,19 +6,16 @@ import Dao.ProfileDao;
 import Dao.ProfileDaoImp;
 import Model.Kweet;
 
-<<<<<<< HEAD
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-=======
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
->>>>>>> 71054217503d3b624b35d184154c99c3d12e44f2
 import java.util.Date;
 import java.util.List;
 
@@ -56,11 +53,16 @@ public class KwetterService {
     @Path("{kweetId}/{ownerId}/{content}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response postKweet(@PathParam("kweetId") Long kweetId, @PathParam("ownerId") String ownerId, @PathParam("content") String kweetContent) {
-        Date postDate = new Date();
-        Kweet kweet = new Kweet(kweetId, ownerId, kweetContent, postDate);
-        System.out.println(kweet);
+        try {
+            Date postDate = new Date();
+            Kweet kweet = new Kweet(kweetId, ownerId, kweetContent, postDate);
+            System.out.println(kweet);
 //        return kweetDao.create(kweet);
-        return Response.ok(kweet).build();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        return Response.ok("Gelukt!").build();
     }
 
 //    public Kweet getKweet(Long id) {
