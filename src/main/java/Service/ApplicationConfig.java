@@ -3,6 +3,6 @@ package Service;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("Kwetter")
+@ApplicationPath("/")
 public class ApplicationConfig extends Application {
 }

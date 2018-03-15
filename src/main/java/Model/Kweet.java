@@ -23,9 +23,9 @@ public class Kweet implements Serializable {
     private Date postDate;
     @Transient
     private List<Profile> likes;
-    @Transient
+    @ElementCollection
     private List<String> mentions;
-    @Transient
+    @ElementCollection
     private List<String> trends;
 
     public Kweet(Long kweetId, String ownerId, String kweet, Date postDate) {

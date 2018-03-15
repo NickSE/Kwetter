@@ -6,11 +6,19 @@ import Dao.ProfileDao;
 import Dao.ProfileDaoImp;
 import Model.Kweet;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+=======
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+>>>>>>> 71054217503d3b624b35d184154c99c3d12e44f2
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +46,7 @@ public class KwetterService {
     }
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("getall")
     public List<Kweet> getKweets() {
         return kweetDao.findAll();
