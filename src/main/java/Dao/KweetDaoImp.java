@@ -35,7 +35,11 @@ public class KweetDaoImp implements KweetDao{
 
     public void initWebBlog() {
         kweets = new ConcurrentHashMap<>();
+<<<<<<< HEAD
         kweets.put(nextId.getAndIncrement(), new Kweet(nextId.getAndIncrement(),"Nick","Test", new Date()));
+=======
+        kweets.put(nextId.getAndIncrement(), new Kweet(nextId.getAndIncrement(), "Nick", "Test", new Date()));
+>>>>>>> 73f3620ac49c51d80838ccfa9afdb94dbf12472c
     }
 
 
@@ -48,6 +52,10 @@ public class KweetDaoImp implements KweetDao{
         kweets.put(kweet.getKweetId(), kweet);
         return kweet;
 //        em.persist(kweet);
+<<<<<<< HEAD
+=======
+//        return kweet;
+>>>>>>> 73f3620ac49c51d80838ccfa9afdb94dbf12472c
     }
 
     @Override

@@ -1,17 +1,27 @@
 package Model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
+<<<<<<< HEAD
 @Table(name="Kweet")
+=======
+@Table(name="kweet")
+>>>>>>> 73f3620ac49c51d80838ccfa9afdb94dbf12472c
 @NamedQuery(name="Kweet.findAll", query="Select k FROM Kweet k")
 public class Kweet implements Serializable {
 
-    @Id @GeneratedValue
-    private long kweetId;
+    @Id
+    @GeneratedValue
+    private Long kweetId;
     private String ownerId;
     private String kweet;
     private Date postDate;
@@ -22,14 +32,15 @@ public class Kweet implements Serializable {
     @ElementCollection
     private List<String> trends;
 
-    public Kweet(long kweetId, String ownerId, String kweet, Date postDate) {
+    public Kweet(Long kweetId, String ownerId, String kweet, Date postDate) {
         this.kweetId = kweetId;
         this.ownerId = ownerId;
         this.kweet = kweet;
         this.postDate = postDate;
     }
 
-    public Kweet(String ownerId, String kweet, Date postDate, List<String> mentions, List<String> trends) {
+    public Kweet(Long kweetId, String ownerId, String kweet, Date postDate, List<String> mentions, List<String> trends) {
+        this.kweetId = kweetId;
         this.ownerId = ownerId;
         this.kweet = kweet;
         this.postDate = postDate;
@@ -44,7 +55,7 @@ public class Kweet implements Serializable {
         return kweetId;
     }
 
-    public void setKweetId(long kweetId) {
+    public void setKweetId(Long kweetId) {
         this.kweetId = kweetId;
     }
 
